@@ -1,0 +1,20 @@
+name: Stale bot
+
+on: 
+  schedule: 
+  - cron: "0 0 * * *"
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+    -uses: actions/stale@v3
+     with: 
+      repo-token: ${{ secrets.GITHUB_TOKEN }}
+      stale-issue-message: 'This issue has automatically been marked as stale because it has not had activity in more than 30 days. Please comment on this issue within 5 days to keep it open.'
+      stale-pr-message: 'This pull request has automatically been makred as stale because it has not had activity in more than 30 days. Please comment on this pull request within 5 days to keep it open.'
+      days-before-stale: 30
+      days-before-close: 5
+      exempt-issue-labels: 'work-in-progress,awaiting-approval'
+      exempt-pr-labels: 'draft,awaiting-approval'
+      debug-only: true
